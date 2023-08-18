@@ -134,6 +134,9 @@ body {
   }
   .carousel-item {
     height: auto;
+    display: inline-flex;
+    align-items: center;
+    text-align: center;
   }
   .containerInfo {
     bottom: 5.5rem;
@@ -158,15 +161,6 @@ body {
   .subContainer-info h1 {
     font-size: 1.6rem;
   }
-}
-/* Example media query for smaller screens */
-@media (max-width: 1100px) {
-  .carousel-item {
-    height: auto;
-    display: inline-flex;
-    align-items: center;
-    text-align: center;
-  }
   #carousel-img {
     max-width: 100%;
     height: auto;
@@ -178,6 +172,7 @@ body {
     align-items: center;
   }
 }
+
 @media (max-width: 844px) {
   .containerInfo {
     height: 360px;

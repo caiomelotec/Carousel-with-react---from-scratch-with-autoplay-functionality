@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { CarouselItem } from "./CarouselItem";
 import ex01 from "./Media/ex04.jpg";
+import ex05 from "./Media/ex05jpg.jpg";
+import ex02 from "./Media/ex02.jpeg";
+import ex03 from "./Media/ex03.jpg";
+import ex04 from "./Media/ex02.jpg";
+
 import { ContainerInfo } from "./ContainerInfo";
 
 export const Carousel = () => {
@@ -10,26 +15,23 @@ export const Carousel = () => {
 
   const items = [
     {
-      description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam, beatae?",
       icon: ex01,
     },
     {
-      description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam, beatae?",
-      icon: ex01,
+      icon: ex02,
     },
     {
-      description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam, beatae?",
-      icon: ex01,
+      icon: ex03,
     },
     {
-      description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam, beatae",
-      icon: ex01,
+      icon: ex04,
+    },
+    {
+      icon: ex05,
     },
   ];
+
+  let [count, setCount] = useState(1);
 
   const updateIndex = (newIndex) => {
     if (newIndex < 0) {
@@ -38,14 +40,24 @@ export const Carousel = () => {
       newIndex = items.length - 1;
     }
 
+    if (count === 5 && newIndex === 4) {
+      newIndex = 0;
+      setCount(1);
+    }
+    if (newIndex === 0 && count === 1) {
+      newIndex = 4;
+      setCount(5);
+    }
+
     // if the index is two it will set the index to 0 after 2 seconds
-    if (newIndex === 3) {
+    if (isPlaying && newIndex === 4) {
       setTimeout(() => {
         setActiveIndex(0);
-      }, 2000);
+      }, 1800);
     }
     setActiveIndex(newIndex);
   };
+  console.log(count);
 
   useEffect(() => {
     let interval;
@@ -80,6 +92,8 @@ export const Carousel = () => {
           updateIndex={updateIndex}
           setIsPlaying={setIsPlaying}
           isPlaying={isPlaying}
+          count={count}
+          setCount={setCount}
         />
       </div>
     </>

@@ -6,6 +6,8 @@ export const ContainerInfo = ({
   setIsPlaying,
   isPlaying,
   items,
+  count,
+  setCount,
 }) => {
   const containerInfoData = [
     {
@@ -35,7 +37,23 @@ export const ContainerInfo = ({
       button: "Zu den Desserts",
       span: `In teilnehmenden Restaurants. In Frühstücksrestaurants ab 10 Uhr (samstags, sonn- und feiertags ab 11 Uhr). Solange der Vorrat reicht.`,
     },
+    {
+      h1: "Deine McCafé® Genuss-Oase",
+      p: "Entdecke unsere McCafé® Sommerhighlights wie z. B. unsere Cold Brews und Sweets.. Jetzt nur für kurze Zeit.",
+      button: "Zu den McCafé® Highlights",
+      span: `In allen teilnehmenden Restaurants. Solange der Vorrat reicht. Iced Coffee Shake täglich ab 10 Uhr erhältlich (samstags, sonn- und feiertags ab 11 Uhr).`,
+    },
   ];
+
+  const nextSlider = () => {
+    setCount((count += 1));
+    updateIndex(activeIndex + 1);
+  };
+
+  const prevSlider = () => {
+    setCount(count - 1);
+    updateIndex(activeIndex - 1);
+  };
 
   return (
     <div className="containerInfo">
@@ -51,14 +69,10 @@ export const ContainerInfo = ({
       </div>
 
       <div className="carousel-buttons">
-        <button
-          className="button-arrow"
-          onClick={() => updateIndex(activeIndex - 1)}
-        >
-          <ion-icon
-            className="material-symbols-outlined"
-            name="chevron-back"
-          ></ion-icon>
+        <button className="button-arrow" onClick={prevSlider}>
+          <ion-icon className="material-symbols-outlined" name="chevron-back">
+            Bo Back
+          </ion-icon>
         </button>
         <div className="indicators">
           {items.map((item, index) => {
@@ -83,14 +97,13 @@ export const ContainerInfo = ({
             );
           })}
         </div>
-        <button
-          className="button-arrow"
-          onClick={() => updateIndex(activeIndex + 1)}
-        >
+        <button className="button-arrow" onClick={nextSlider}>
           <ion-icon
             className="material-symbols-outlined"
             name="chevron-forward"
-          ></ion-icon>
+          >
+            Forward
+          </ion-icon>
         </button>
         <button
           style={{ padding: "10px 25px" }}

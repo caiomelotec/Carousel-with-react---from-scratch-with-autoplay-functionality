@@ -57,7 +57,6 @@ export const Carousel = () => {
     }
     setActiveIndex(newIndex);
   };
-  console.log(count);
 
   useEffect(() => {
     let interval;

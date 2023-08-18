@@ -8,20 +8,51 @@ body {
   padding: 0;
 }
 
-.App {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
-  background-color: #85a8c5;
-}
-.carousel {
+/* container info */
+.containerInfo {
+  background-color: white;
+  color: black;
+  width: 380px;
+  height: 350px;
+  padding: 10px 25px;
+  text-align: left;
+  position: absolute;
+  left: 3rem;
+  bottom: 5.5rem;
+  border-radius: 8px;
   overflow: hidden;
-  width: 700px;
+}
+.subContainer-info {
+  background-color: white;
+  overflow: hidden;
+}
+
+#span-info {
+  font-size: 0.6rem;
+}
+.play-and-stop-btn {
+  border: none;
+  background-color: transparent;
+  margin-top: 1rem;
+}
+.div-btn-info button {
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  color: black;
+  background-color: #ffbc0d;
+}
+
+/* component */
+.carousel {
+  max-width: 1100px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  flex-direction: column;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
 }
 .inner {
   white-space: nowrap;
@@ -31,15 +62,15 @@ body {
 
 .carousel-item {
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 490px;
-  background-color: #fff;
+  height: 500px;
 }
 
-.carousel img {
-  width: 250px;
-  padding: 0 20px 0 20px;
+#carousel-img {
+  width: 1100px;
+  height: 500px;
+  background-size: 100%;
+  object-fit: 100%;
+  background-repeat: no-repeat;
 }
 .carousel-item-text {
   font-size: 1.15rem;
@@ -52,12 +83,19 @@ body {
 .carousel-buttons {
   display: flex;
   justify-content: space-evenly;
+  overflow: hidden;
+  z-index: 100;
+  background-color: white;
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
 }
 .button-arrow {
   border: none;
   background: none;
   cursor: pointer;
-  margin-top: 20px;
+  margin-top: 25px;
+  font-size: 1.5rem;
 }
 
 .indicators {
@@ -78,9 +116,79 @@ body {
 }
 
 .indicator-symbol {
-  color: #26343f;
+  color: rgb(164, 164, 164);
 }
 
 .indicator-symbol-active {
-  color: #ffffff;
+  color: rgb(76, 76, 76);
+}
+
+/*  RESPONSIVE  */
+
+/* Example of a media query for smaller screens */
+@media (max-width: 1100px) {
+  .carousel {
+    max-width: 100%;
+    margin: 0 0rem;
+    padding-bottom: 24rem;
+  }
+  .carousel-item {
+    height: auto;
+  }
+  .containerInfo {
+    bottom: 5.5rem;
+    width: 100%;
+    left: 0;
+    margin-right: 4rem;
+    border: solid 2px rgb(200, 200, 200);
+    height: 280px;
+    border-radius: 0;
+  }
+  .subContainer-info {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+  }
+  .div-btn-info button {
+    margin: 0.8rem 0;
+  }
+  #span-info {
+    font-size: 0.6rem;
+  }
+}
+/* Example media query for smaller screens */
+@media (max-width: 1100px) {
+  .carousel-item {
+    height: auto;
+    display: inline-flex;
+    align-items: center;
+    text-align: center;
+  }
+  #carousel-img {
+    max-width: 100%;
+    height: auto;
+  }
+  .carousel-item-text {
+    margin: 20px 0;
+  }
+  .carousel-buttons {
+    align-items: center;
+  }
+}
+@media (max-width: 844px) {
+  .containerInfo {
+    height: 360px;
+    bottom: 0.2rem;
+  }
+  .containerInfo span {
+    font-size: 1rem;
+  }
+  #span-info {
+    font-size: 0.7rem;
+  }
+  .carousel-buttons {
+    margin-bottom: 1rem;
+    left: 0;
+    bottom: 0;
+  }
 }

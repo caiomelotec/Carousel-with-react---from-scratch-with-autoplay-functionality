@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { CarouselItem } from "./CarouselItem";
+import ex01 from "./Media/ex04.jpg";
+import { ContainerInfo } from "./ContainerInfo";
 
 export const Carousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -10,17 +12,22 @@ export const Carousel = () => {
     {
       description:
         "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam, beatae?",
-      icon: require("./Media/ex1.svg"),
+      icon: ex01,
     },
     {
       description:
         "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam, beatae?",
-      icon: require("./Media/ex2.svg"),
+      icon: ex01,
     },
     {
       description:
         "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam, beatae?",
-      icon: require("./Media/ex3.svg"),
+      icon: ex01,
+    },
+    {
+      description:
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam, beatae",
+      icon: ex01,
     },
   ];
 
@@ -32,7 +39,7 @@ export const Carousel = () => {
     }
 
     // if the index is two it will set the index to 0 after 2 seconds
-    if (newIndex === 2) {
+    if (newIndex === 3) {
       setTimeout(() => {
         setActiveIndex(0);
       }, 2000);
@@ -57,56 +64,25 @@ export const Carousel = () => {
   });
 
   return (
-    <div className="carousel">
-      <div
-        className="inner"
-        style={{ transform: `translate(-${activeIndex * 100}%)` }}
-      >
-        {items.map((item, index) => {
-          return <CarouselItem key={index} item={item} />;
-        })}
-      </div>
-
-      <div className="carousel-buttons">
-        <button
-          className="button-arrow"
-          onClick={() => updateIndex(activeIndex - 1)}
+    <>
+      <div className="carousel">
+        <div
+          className="inner"
+          style={{ transform: `translate(-${activeIndex * 100}%)` }}
         >
-          <span className="material-symbols-outlined">arrow_back</span>
-        </button>
-        <div className="indicators">
           {items.map((item, index) => {
-            return (
-              <button
-                onClick={() => {
-                  updateIndex(index);
-                }}
-                key={index}
-                className="indicator-buttons"
-              >
-                <span
-                  className={`material-symbols-outlined ${
-                    index === activeIndex
-                      ? "indicator-symbol-active"
-                      : "indicator-symbol"
-                  }`}
-                >
-                  radio_button_checked
-                </span>
-              </button>
-            );
+            return <CarouselItem key={index} item={item} />;
           })}
         </div>
-        <button
-          className="button-arrow"
-          onClick={() => updateIndex(activeIndex + 1)}
-        >
-          <span className="material-symbols-outlined">arrow_forward</span>
-        </button>
+        <ContainerInfo
+          currentItem={items[activeIndex]}
+          items={items}
+          activeIndex={activeIndex}
+          updateIndex={updateIndex}
+          setIsPlaying={setIsPlaying}
+          isPlaying={isPlaying}
+        />
       </div>
-      <button onClick={() => setIsPlaying(!isPlaying)}>
-        {isPlaying ? "PAUSE" : "PLAY"}
-      </button>
-    </div>
+    </>
   );
 };

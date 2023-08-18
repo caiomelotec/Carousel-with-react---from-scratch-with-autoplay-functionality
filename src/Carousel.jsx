@@ -75,7 +75,6 @@ export const Carousel = () => {
           })}
         </div>
         <ContainerInfo
-          currentItem={items[activeIndex]}
           items={items}
           activeIndex={activeIndex}
           updateIndex={updateIndex}
